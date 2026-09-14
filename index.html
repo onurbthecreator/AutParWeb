@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutPar | Automação Industrial e Painéis Elétricos em Cambé, PR</title>
+<meta name="description" content="AutPar Fabricação de Máquinas e Equipamentos: instalação, automação industrial, montagem de painéis elétricos (CLPs, IHMs) e manutenção em Cambé, PR, desde 2008. Agora com monitoramento remoto de equipamentos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     TOKENS
+  ========================================================= */
+  :root{
+    --red: #D62839;
+    --red-dark: #A81F2D;
+    --blue: #12459C;
+    --blue-dark: #0B2F6B;
+    --ink: #14181C;
+    --ink-soft: #262B31;
+    --steel: #55606B;
+    --steel-light: #8A94A0;
+    --paper: #EFF1ED;
+    --paper-2: #E3E5DD;
+    --white: #FFFFFF;
+    --amber: #F2A900;
+    --font-display: 'Oswald', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --ease: cubic-bezier(.22,.61,.36,1);
+    --radius: 3px;
+    --max: 1200px;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; }
+  h1,h2,h3,h4{
+    font-family:var(--font-display);
+    font-weight:600;
+    line-height:1.1;
+    margin:0 0 .5em;
+    letter-spacing:.2px;
+  }
+  p{ margin:0 0 1em; color:var(--steel); max-width:62ch; }
+  section{ scroll-margin-top:78px; }
+  .container{ max-width:var(--max); margin:0 auto; padding:0 24px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:.85rem; font-weight:600; color:var(--red);
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:''; width:22px; height:2px; background:var(--red); display:inline-block;
+  }
+  .eyebrow.blue{ color:var(--blue); }
+  .eyebrow.blue::before{ background:var(--blue); }
+  .eyebrow.on-dark{ color:var(--amber); }
+  .eyebrow.on-dark::before{ background:var(--amber); }
+
+  /* brand wordmark: Aut in red, Par in blue */
+  .brand{ font-family:var(--font-display); font-weight:700; }
+  .brand .aut{ color:var(--red); }
+  .brand .par{ color:var(--blue); }
+
+  .split-bar{
+    height:5px; width:100%;
+    background:linear-gradient(90deg, var(--red) 0 50%, var(--blue) 50% 100%);
+  }
+
+  /* buttons */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    font-family:var(--font-body); font-weight:600; font-size:.95rem;
+    padding:14px 26px; border-radius:var(--radius);
+    border:1.5px solid transparent; cursor:pointer;
+    transition:transform .25s var(--ease), background-color .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+    text-decoration:none;
+  }
+  .btn:active{ transform:translateY(1px); }
+  .btn-primary{ background:var(--red); color:var(--white); }
+  .btn-primary:hover{ background:var(--red-dark); }
+  .btn-outline-dark{ border-color: rgba(20,24,28,.35); color:var(--ink); background:transparent; }
+  .btn-outline-dark:hover{ border-color:var(--ink); background:rgba(20,24,28,.05); }
+  .btn-outline-light{ border-color:rgba(255,255,255,.55); color:var(--white); background:transparent; }
+  .btn-outline-light:hover{ border-color:#fff; background:rgba(255,255,255,.1); }
+  .btn-block{ width:100%; }
+
+  /* =========================================================
+     SCROLL REVEAL
+  ========================================================= */
+  .reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+  .reveal-left{ transform:translateX(-34px); }
+  .reveal-left.in-view{ transform:translateX(0); }
+  .reveal-right{ transform:translateX(34px); }
+  .reveal-right.in-view{ transform:translateX(0); }
+  .reveal-big{ transform:translateY(44px) scale(.98); }
+  .reveal-big.in-view{ transform:translateY(0) scale(1); }
+
+  .services-list .service-row:nth-child(1){ transition-delay:0s; }
+  .services-list .service-row:nth-child(2){ transition-delay:.07s; }
+  .services-list .service-row:nth-child(3){ transition-delay:.14s; }
+  .services-list .service-row:nth-child(4){ transition-delay:.21s; }
+  .services-list .service-row:nth-child(5){ transition-delay:.28s; }
+  .services-list .service-row:nth-child(6){ transition-delay:.35s; }
+  .services-list .service-row:nth-child(7){ transition-delay:.42s; }
+
+  .stats-row .stat:nth-child(1){ transition-delay:0s; }
+  .stats-row .stat:nth-child(2){ transition-delay:.1s; }
+  .stats-row .stat:nth-child(3){ transition-delay:.2s; }
+
+  .steps .step:nth-child(1){ transition-delay:0s; }
+  .steps .step:nth-child(2){ transition-delay:.15s; }
+  .steps .step:nth-child(3){ transition-delay:.3s; }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal-left, .reveal-right, .reveal-big{
+      opacity:1 !important; transform:none !important; transition:none !important;
+    }
+    html{ scroll-behavior:auto; }
+    #heroImg{ transform:none !important; }
+  }
+
+  /* =========================================================
+     HEADER
+  ========================================================= */
+  .site-header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:18px 0;
+    background:transparent;
+    transition:background-color .35s var(--ease), padding .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  .site-header.scrolled{
+    background:rgba(20,24,28,.94);
+    padding:12px 0;
+    box-shadow:0 6px 24px rgba(0,0,0,.25);
+  }
+  .site-header .container{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+  .logo-mark{ font-size:1.45rem; text-decoration:none; }
+  .logo-mark .brand{ color:var(--white); }
+  .logo-mark .aut{ color:#FF6B6B; }
+  .logo-mark .par{ color:#6FA1FF; }
+
+  .nav-links{ display:flex; align-items:center; gap:32px; list-style:none; margin:0; padding:0; }
+  .nav-links a{
+    text-decoration:none; color:rgba(255,255,255,.85); font-size:.95rem; font-weight:500;
+    position:relative; padding:4px 0;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:2px;
+    background:var(--amber); transition:width .3s var(--ease);
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{ display:flex; align-items:center; gap:18px; }
+  .nav-cta .btn{ padding:10px 20px; font-size:.88rem; }
+
+  .nav-toggle{
+    display:none; background:none; border:0; width:34px; height:28px; position:relative; cursor:pointer;
+  }
+  .nav-toggle span{
+    position:absolute; left:0; right:0; height:2px; background:#fff; transition:transform .3s var(--ease), opacity .3s var(--ease);
+  }
+  .nav-toggle span:nth-child(1){ top:2px; }
+  .nav-toggle span:nth-child(2){ top:13px; }
+  .nav-toggle span:nth-child(3){ top:24px; }
+  .nav-toggle.open span:nth-child(1){ transform:translateY(11px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2){ opacity:0; }
+  .nav-toggle.open span:nth-child(3){ transform:translateY(-11px) rotate(-45deg); }
+
+  /* =========================================================
+     HERO
+  ========================================================= */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:flex-end;
+    overflow:hidden; background:var(--ink);
+  }
+  .hero-media{ position:absolute; inset:0; overflow:hidden; }
+  .hero-media img{
+    width:100%; height:130%; object-fit:cover; position:absolute; top:-10%; left:0;
+    filter:saturate(1.05) contrast(1.03);
+  }
+  .hero-media::after{
+    content:''; position:absolute; inset:0;
+    background:
+      linear-gradient(0deg, rgba(14,17,20,.94) 0%, rgba(14,17,20,.75) 32%, rgba(11,20,40,.45) 62%, rgba(11,20,40,.35) 100%);
+  }
+  .hero-content{ position:relative; z-index:2; width:100%; padding:180px 0 64px; }
+  .hero-locator{
+    color:rgba(255,255,255,.78); font-size:.95rem; margin-bottom:22px; max-width:40ch;
+  }
+  .hero-wordmark{
+    font-size:clamp(2.6rem, 8vw, 5rem); line-height:.95; margin-bottom:22px;
+  }
+  .hero-wordmark .aut{ color:#FF6B6B; }
+  .hero-wordmark .par{ color:#6FA1FF; }
+  .hero h1{
+    color:#fff; font-size:clamp(1.7rem, 3.6vw, 2.7rem); max-width:18ch; margin-bottom:20px;
+  }
+  .hero h2{
+    color:#fff; font-size:clamp(1.4rem, 2.8vw, 2rem); font-weight:500; max-width:20ch; margin-bottom:20px;
+  }
+  .hero-sub{ color:rgba(255,255,255,.82); max-width:52ch; font-size:1.05rem; margin-bottom:34px; }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:16px; margin-bottom:56px; }
+
+  .stats-row{ display:flex; flex-wrap:wrap; gap:0; border-top:1px solid rgba(255,255,255,.18); padding-top:28px; }
+  .stat{ flex:1 1 200px; padding-right:28px; }
+  .stat .num{ font-family:var(--font-display); font-size:2.1rem; color:#fff; line-height:1; margin-bottom:6px; }
+  .stat .label{ color:rgba(255,255,255,.68); font-size:.88rem; max-width:26ch; }
+
+  /* =========================================================
+     ABOUT
+  ========================================================= */
+  .about{ padding:120px 0; background:var(--paper); overflow:hidden; }
+  .about .container{ display:grid; grid-template-columns:1.05fr .95fr; gap:72px; align-items:center; }
+  .about-copy h2{ font-size:clamp(1.9rem, 3.6vw, 2.6rem); max-width:14ch; color:var(--ink); }
+  .about-copy .lede{ font-size:1.08rem; color:var(--ink-soft); }
+  .about-facts{ display:flex; flex-direction:column; gap:14px; margin-top:28px; padding-top:24px; border-top:1px solid rgba(20,24,28,.14); }
+  .about-facts .fact{ display:flex; gap:14px; font-size:.94rem; color:var(--steel); }
+  .about-facts .fact b{ color:var(--ink); font-weight:600; min-width:180px; }
+
+  .about-media{ position:relative; }
+  .about-media .frame{
+    position:relative; border-radius:var(--radius); overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(20,24,28,.35);
+  }
+  .about-media img{ width:100%; height:520px; object-fit:cover; }
+  .about-media .float-card{
+    position:absolute; left:-40px; bottom:-40px; width:230px;
+    background:var(--white); padding:22px 22px 20px; border-radius:var(--radius);
+    box-shadow:0 24px 48px -16px rgba(20,24,28,.35);
+    border-left:5px solid var(--red);
+  }
+  .about-media .float-card .big-num{
+    font-family:var(--font-display); font-size:3.1rem; color:var(--ink); line-height:1;
+  }
+  .about-media .float-card .big-num span{ color:var(--red); }
+  .about-media .float-card p{ margin:8px 0 0; font-size:.85rem; color:var(--steel); }
+  .about-media .thumb{
+    position:absolute; right:-32px; top:-32px; width:150px; height:110px;
+    border-radius:var(--radius); overflow:hidden; border:5px solid var(--paper);
+    box-shadow:0 18px 36px -12px rgba(20,24,28,.4);
+  }
+  .about-media .thumb img{ width:100%; height:100%; object-fit:cover; }
+
+  /* =========================================================
+     SERVICES
+  ========================================================= */
+  .services{ padding:120px 0; background:var(--paper-2); }
+  .services-head{ display:grid; grid-template-columns:1.1fr .9fr; gap:60px; margin-bottom:64px; align-items:end; }
+  .services-head h2{ font-size:clamp(1.9rem, 3.6vw, 2.6rem); max-width:14ch; }
+  .services-head p{ font-size:1.02rem; }
+
+  .services-list{ border-top:1px solid rgba(20,24,28,.16); }
+  .service-row{
+    display:grid; grid-template-columns:64px 1fr; gap:26px;
+    padding:30px 0; border-bottom:1px solid rgba(20,24,28,.16);
+    align-items:flex-start;
+  }
+  .service-icon{
+    width:56px; height:56px; border-radius:var(--radius);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; flex-shrink:0;
+  }
+  .service-icon.c-red{ background:var(--red); }
+  .service-icon.c-blue{ background:var(--blue); }
+  .service-icon svg{ width:26px; height:26px; }
+  .service-row h3{ font-size:1.18rem; margin-bottom:6px; color:var(--ink); }
+  .service-row p{ margin:0; font-size:.96rem; }
+  .service-tag{
+    display:inline-block; margin-top:10px; font-size:.78rem; font-weight:600;
+    color:var(--red); background:rgba(214,40,57,.09); padding:3px 10px; border-radius:2px;
+  }
+
+  /* =========================================================
+     GALERIA DE TRABALHO
+  ========================================================= */
+  .work-gallery{ padding:0 0 120px; background:var(--paper-2); }
+  .gallery-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; }
+  .gallery-card{ position:relative; border-radius:var(--radius); overflow:hidden; box-shadow:0 20px 40px -20px rgba(20,24,28,.3); }
+  .gallery-card img{ width:100%; height:340px; object-fit:cover; transition:transform .5s var(--ease); }
+  .gallery-card:hover img{ transform:scale(1.06); }
+  .gallery-card::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(14,17,20,.88) 0%, rgba(14,17,20,.1) 55%, rgba(14,17,20,0) 100%);
+  }
+  .gallery-card .cap{ position:absolute; left:20px; right:20px; bottom:18px; z-index:2; color:#fff; }
+  .gallery-card .cap .k{ font-size:.78rem; font-weight:600; color:var(--amber); display:block; margin-bottom:4px; }
+  .gallery-card .cap .v{ font-family:var(--font-display); font-size:1.1rem; }
+  @media (max-width:980px){ .gallery-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:640px){ .gallery-grid{ grid-template-columns:1fr; } .gallery-card img{ height:260px; } }
+
+  /* =========================================================
+     DIFERENCIAL
+  ========================================================= */
+  .differential{
+    position:relative; padding:150px 0 130px; color:#fff; overflow:hidden;
+    background:var(--ink);
+    clip-path:polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+    margin:-40px 0;
+  }
+  .differential-media{ position:absolute; inset:0; }
+  .differential-media img{ width:100%; height:100%; object-fit:cover; opacity:.28; }
+  .differential-media::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(120deg, rgba(11,47,107,.92) 0%, rgba(20,24,28,.95) 55%, rgba(168,31,45,.55) 130%);
+  }
+  .differential .container{ position:relative; z-index:2; }
+  .differential-top{ max-width:900px; margin-bottom:56px; }
+  .differential h2{
+    font-size:clamp(2rem, 4.6vw, 3.4rem); color:#fff; line-height:1.12; max-width:18ch;
+  }
+  .differential-lede{ color:rgba(255,255,255,.8); font-size:1.08rem; max-width:60ch; margin-top:20px; }
+
+  .differential-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:64px; align-items:start; }
+
+  .steps{ display:flex; flex-direction:column; gap:0; }
+  .step{ display:grid; grid-template-columns:48px 1fr; gap:20px; padding:22px 0; border-top:1px solid rgba(255,255,255,.16); }
+  .step:last-child{ border-bottom:1px solid rgba(255,255,255,.16); }
+  .step-icon{
+    width:44px; height:44px; border-radius:50%; border:1.5px solid rgba(255,255,255,.4);
+    display:flex; align-items:center; justify-content:center; color:var(--amber);
+  }
+  .step-icon svg{ width:22px; height:22px; }
+  .step h4{ color:#fff; font-size:1.02rem; margin-bottom:6px; }
+  .step p{ color:rgba(255,255,255,.72); font-size:.92rem; margin:0; }
+
+  .pricing-note{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18);
+    border-radius:var(--radius); padding:30px 28px; backdrop-filter:blur(2px);
+  }
+  .pricing-note .label{ color:var(--amber); font-size:.85rem; font-weight:600; margin-bottom:10px; display:block; }
+  .pricing-note p{ color:rgba(255,255,255,.85); font-size:1rem; margin-bottom:22px; }
+  .pricing-note .btn{ width:100%; }
+
+  /* CTA band */
+  .cta-band{ position:relative; padding:90px 0; overflow:hidden; }
+  .cta-band img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .cta-band::after{ content:''; position:absolute; inset:0; background:linear-gradient(90deg, rgba(14,17,20,.92) 15%, rgba(14,17,20,.55) 100%); }
+  .cta-band .container{ position:relative; z-index:2; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px; }
+  .cta-band h3{ color:#fff; font-size:clamp(1.4rem,3vw,2rem); max-width:20ch; margin:0; }
+
+  /* =========================================================
+     CONTACT
+  ========================================================= */
+  .contact{ padding:120px 0; background:var(--paper); }
+  .contact-head{ max-width:640px; margin-bottom:64px; }
+  .contact-head h2{ font-size:clamp(1.9rem, 3.6vw, 2.6rem); }
+  .contact-grid{ display:grid; grid-template-columns:1fr .8fr; gap:60px; align-items:start; }
+
+  .form-row{ margin-bottom:20px; }
+  .form-row label{ display:block; font-size:.88rem; font-weight:600; color:var(--ink); margin-bottom:8px; }
+  .form-row input, .form-row textarea{
+    width:100%; padding:14px 16px; font-family:var(--font-body); font-size:.98rem;
+    border:1.5px solid rgba(20,24,28,.22); border-radius:var(--radius); background:#fff; color:var(--ink);
+    transition:border-color .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .form-row input:focus, .form-row textarea:focus{
+    outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(18,69,156,.14);
+  }
+  .form-row textarea{ resize:vertical; min-height:130px; }
+  .form-two{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+
+  #formSuccess{
+    display:none; background:#fff; border-left:5px solid var(--blue); border-radius:var(--radius);
+    padding:32px; box-shadow:0 20px 40px -18px rgba(20,24,28,.25);
+  }
+  #formSuccess h3{ margin-bottom:10px; color:var(--ink); }
+  #formSuccess p{ margin:0; }
+
+  .info-panel{
+    background:var(--ink); color:#fff; padding:40px 34px; border-radius:var(--radius);
+    border-top:5px solid var(--red);
+  }
+  .info-panel h3{ color:#fff; font-size:1.15rem; margin-bottom:24px; }
+  .info-item{ display:flex; gap:16px; padding:16px 0; border-top:1px solid rgba(255,255,255,.14); }
+  .info-item:first-of-type{ border-top:none; padding-top:0; }
+  .info-item .ic{ width:24px; height:24px; flex-shrink:0; color:var(--amber); }
+  .info-item .ic svg{ width:100%; height:100%; }
+  .info-item .t{ font-size:.78rem; color:rgba(255,255,255,.55); margin-bottom:3px; }
+  .info-item .v{ font-size:.96rem; color:#fff; }
+  .info-legal{ margin-top:28px; padding-top:20px; border-top:1px solid rgba(255,255,255,.14); font-size:.82rem; color:rgba(255,255,255,.55); line-height:1.6; }
+
+  /* =========================================================
+     FOOTER
+  ========================================================= */
+  footer{ background:var(--ink); color:rgba(255,255,255,.7); padding:64px 0 28px; }
+  .footer-top{ display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:48px; padding-bottom:44px; border-bottom:1px solid rgba(255,255,255,.14); }
+  footer .logo-mark .brand{ font-size:1.5rem; }
+  .footer-tagline{ margin-top:14px; font-size:.92rem; max-width:32ch; color:rgba(255,255,255,.6); }
+  .footer-col h4{ color:#fff; font-size:.92rem; margin-bottom:18px; }
+  .footer-col ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+  .footer-col a{ text-decoration:none; color:rgba(255,255,255,.62); font-size:.92rem; }
+  .footer-col a:hover{ color:#fff; }
+  .footer-bottom{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding-top:24px; font-size:.82rem; color:rgba(255,255,255,.45); }
+
+  /* =========================================================
+     RESPONSIVE
+  ========================================================= */
+  @media (max-width: 980px){
+    .about .container, .services-head, .differential-grid, .contact-grid{ grid-template-columns:1fr; }
+    .about-media{ margin-top:70px; }
+    .about-media .thumb{ display:none; }
+    .about-media .float-card{ left:16px; }
+    .footer-top{ grid-template-columns:1fr; gap:36px; }
+  }
+
+  @media (max-width: 760px){
+    .nav-links, .nav-cta .btn-outline-light{ display:none; }
+    .nav-toggle{ display:block; }
+    .site-header.nav-open{ background:rgba(20,24,28,.98); padding-bottom:18px; }
+    .site-header.nav-open .nav-links{
+      display:flex; flex-direction:column; align-items:flex-start; gap:18px;
+      width:100%; margin-top:22px; padding-top:22px; border-top:1px solid rgba(255,255,255,.14);
+    }
+    .site-header.nav-open .nav-cta{ margin-top:18px; width:100%; }
+    .site-header.nav-open .nav-cta .btn{ display:flex; width:100%; }
+    .hero-content{ padding-top:150px; }
+    .stats-row{ flex-direction:column; gap:20px; }
+    .about, .services, .contact{ padding:80px 0; }
+    .differential{ padding:100px 0 90px; }
+    .form-two{ grid-template-columns:1fr; }
+    .cta-band .container{ flex-direction:column; align-items:flex-start; }
+    .service-row{ grid-template-columns:48px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="split-bar"></div>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <a href="#top" class="logo-mark"><span class="brand"><span class="aut">Aut</span><span class="par">Par</span></span></a>
+
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#diferencial">Monitoramento</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a class="btn btn-outline-light" href="tel:+554333759069">(43) 3375-9069</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section class="hero" id="top">
+  <div class="hero-media">
+    <img id="heroImg" src="https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?auto=format&fit=crop&w=1920&q=80" alt="Interior de fábrica industrial com maquinário de grande porte">
+  </div>
+  <div class="hero-content container">
+    <p class="hero-locator reveal">Cambé, PR. Atendendo a indústria da região de Londrina desde 25 de janeiro de 2008.</p>
+    <h1 class="hero-wordmark reveal"><span class="aut">Aut</span><span class="par">Par</span></h1>
+    <h2 class="reveal">Automação industrial e painéis elétricos que mantêm a sua produção de pé.</h2>
+    <p class="hero-sub reveal">Painéis elétricos, CLPs, IHMs e servo acionamentos: instalamos, mantemos e agora também monitoramos os equipamentos da sua fábrica, com atendimento direto de quem conhece a sua linha, sem intermediário.</p>
+    <div class="hero-actions reveal">
+      <a href="#contato" class="btn btn-primary">Falar com a AutPar</a>
+      <a href="#servicos" class="btn btn-outline-light">Conhecer os serviços</a>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat reveal"><div class="num">18 anos</div><div class="label">de atuação contínua na indústria da região</div></div>
+      <div class="stat reveal"><div class="num">2008</div><div class="label">ano de fundação, em Cambé, PR</div></div>
+      <div class="stat reveal"><div class="num">7</div><div class="label">frentes técnicas, de instalação a monitoramento</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SOBRE
+========================================================= -->
+<section class="about" id="sobre">
+  <div class="container">
+    <div class="about-copy">
+      <span class="eyebrow reveal">Quem cuida da sua máquina</span>
+      <h2 class="reveal">Uma micro empresa que virou referência técnica em Cambé</h2>
+      <p class="lede reveal">A AutPar nasceu para resolver um problema simples: indústrias da região de Londrina precisavam de uma empresa próxima, que instalasse e mantivesse seus painéis e equipamentos com agilidade, sem depender de fornecedores de fora ou de prazos longos.</p>
+      <p class="reveal">Dezoito anos depois, continuamos micro empresa por escolha. Isso significa atendimento direto: quem atende o telefone é quem conhece o seu equipamento. Trabalhamos com instalação, automação industrial, montagem e manutenção de painéis elétricos (CLPs, IHMs e servo acionamentos), instalações hidráulicas e capacitação técnica. Muitas vezes, a mesma equipe que instala o seu painel é quem cuida dele depois.</p>
+
+      <div class="about-facts reveal">
+        <div class="fact"><b>Razão social</b> Aut-Par Fabricação de Máquinas e Equipamentos Ltda</div>
+        <div class="fact"><b>CNPJ</b> 09.333.505/0001-42</div>
+        <div class="fact"><b>Endereço</b> Rua Paranaguá, 121, Jardim Ana Eliza, Cambé, PR</div>
+        <div class="fact"><b>Atividade principal</b> Instalação e automação de máquinas e equipamentos industriais</div>
+      </div>
+    </div>
+
+    <div class="about-media reveal reveal-right">
+      <div class="frame">
+        <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=1000&q=80" alt="Engenheiro configurando painel de automação em máquina industrial">
+      </div>
+      <div class="thumb"><img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=600&q=80" alt="Montagem de placa e componentes de painel elétrico"></div>
+      <div class="float-card">
+        <div class="big-num"><span>18</span> anos</div>
+        <p>cuidando da indústria da região de Londrina, desde 25/01/2008.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SERVIÇOS
+========================================================= -->
+<section class="services" id="servicos">
+  <div class="container">
+    <div class="services-head">
+      <h2 class="reveal">O que a AutPar faz pela sua indústria</h2>
+      <p class="reveal">Sete frentes técnicas que cobrem o ciclo inteiro do seu equipamento: da instalação ao treinamento da sua equipe, passando pela manutenção do dia a dia.</p>
+    </div>
+
+    <div class="services-list">
+
+      <div class="service-row reveal">
+        <div class="service-icon c-red">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Instalação de máquinas e equipamentos industriais</h3>
+          <p>Do projeto à partida da máquina: instalamos equipamentos, painéis de comando e linhas de produção, com acompanhamento técnico do início ao fim.</p>
+          <span class="service-tag">Atividade principal</span>
+        </div>
+      </div>
+
+      <div class="service-row reveal">
+        <div class="service-icon c-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2 4 14h6l-1 8 9-12h-6z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Manutenção elétrica industrial</h3>
+          <p>Manutenção preventiva e corretiva em painéis, motores e comandos, para reduzir paradas não programadas.</p>
+          <span class="service-tag">CLPs, IHMs e servo acionamentos</span>
+        </div>
+      </div>
+
+      <div class="service-row reveal">
+        <div class="service-icon c-red">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="7" y="7" width="10" height="10" rx="1"/>
+            <path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Fabricação de equipamentos elétricos</h3>
+          <p>Projetamos e fabricamos equipamentos e painéis elétricos sob medida, de acordo com a necessidade específica da sua linha.</p>
+        </div>
+      </div>
+
+      <div class="service-row reveal">
+        <div class="service-icon c-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/>
+            <path d="M19.4 13a7.4 7.4 0 0 0 .1-2l2-1.4-2-3.4-2.3.6a7.6 7.6 0 0 0-1.7-1L15 3h-6l-.5 2.4a7.6 7.6 0 0 0-1.7 1l-2.3-.6-2 3.4 2 1.4a7.4 7.4 0 0 0 0 2l-2 1.4 2 3.4 2.3-.6a7.6 7.6 0 0 0 1.7 1L9 21h6l.5-2.4a7.6 7.6 0 0 0 1.7-1l2.3.6 2-3.4-2-1.4Z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Manutenção de máquinas e materiais elétricos</h3>
+          <p>Revisão, correção de fator de potência e reparo de máquinas e componentes elétricos, prolongando a vida útil dos seus ativos.</p>
+          <span class="service-tag">Correção de fator de potência</span>
+        </div>
+      </div>
+
+      <div class="service-row reveal">
+        <div class="service-icon c-red">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3s6 7.1 6 11a6 6 0 1 1-12 0c0-3.9 6-11 6-11Z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Instalações hidráulicas</h3>
+          <p>Projeto e instalação de sistemas hidráulicos industriais, com foco em segurança e eficiência operacional.</p>
+        </div>
+      </div>
+
+      <div class="service-row reveal">
+        <div class="service-icon c-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3 2 8l10 5 10-5-10-5Z"/>
+            <path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"/>
+            <path d="M22 8v6"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Educação profissional técnica</h3>
+          <p>Treinamento e capacitação da sua equipe, incluindo adequação à Norma NR12, para operar e cuidar dos equipamentos no dia a dia da produção.</p>
+          <span class="service-tag">NR12</span>
+        </div>
+      </div>
+
+      <div class="service-row reveal">
+        <div class="service-icon c-red">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 2v6M15 2v6M7 8h10v3a5 5 0 0 1-10 0V8Z"/>
+            <path d="M12 16v3M9 22h6"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Material elétrico e componentes eletrônicos</h3>
+          <p>Fornecimento de material elétrico e componentes eletrônicos para manutenção e obras da sua indústria.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     GALERIA DE TRABALHO
+========================================================= -->
+<section class="work-gallery">
+  <div class="container">
+    <div class="gallery-grid">
+      <div class="gallery-card reveal">
+        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80" alt="Mesa de projeto elétrico com desenhos técnicos">
+        <div class="cap"><span class="k">Etapa 1</span><span class="v">Projeto elétrico</span></div>
+      </div>
+      <div class="gallery-card reveal">
+        <img src="https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=800&q=80" alt="Teste de circuito de painel elétrico com multímetro">
+        <div class="cap"><span class="k">Etapa 2</span><span class="v">Montagem e testes do painel</span></div>
+      </div>
+      <div class="gallery-card reveal">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Detalhe de placa e componentes eletrônicos">
+        <div class="cap"><span class="k">Etapa 3</span><span class="v">Componentes e automação</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     DIFERENCIAL: MONITORAMENTO REMOTO
+========================================================= -->
+<section class="differential" id="diferencial">
+  <div class="differential-media">
+    <img src="https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1600&q=80" alt="Tela de monitoramento sendo acompanhada em tempo real">
+  </div>
+  <div class="container">
+    <div class="differential-top">
+      <span class="eyebrow on-dark reveal">Novo, para quem já é cliente AutPar</span>
+      <h2 class="reveal reveal-big">A gente já cuida da sua máquina. Agora a gente avisa antes dela parar.</h2>
+      <p class="differential-lede reveal">Lançamos um serviço de monitoramento remoto para os equipamentos das indústrias que já atendemos. Um sensor instalado na máquina acompanha o funcionamento em tempo real e avisa a nossa equipe e a sua antes de uma parada não programada acontecer.</p>
+    </div>
+
+    <div class="differential-grid">
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="7" y="7" width="10" height="10" rx="1"/>
+              <path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Sensor instalado no equipamento</h4>
+            <p>Nossa equipe instala o sensor durante uma manutenção normal, sem parar a sua produção.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12.5a10 10 0 0 1 14 0"/>
+              <path d="M8.5 16a5 5 0 0 1 7 0"/>
+              <circle cx="12" cy="19" r="1.1" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Monitoramento contínuo</h4>
+            <p>O funcionamento do equipamento é acompanhado remotamente, dia e noite, sem depender de ronda manual.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a5 5 0 0 0-5 5v3.5c0 .8-.3 1.6-.9 2.2L5 15h14l-1.1-1.3a3 3 0 0 1-.9-2.2V8a5 5 0 0 0-5-5Z"/>
+              <path d="M9.5 18a2.5 2.5 0 0 0 5 0"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Alerta antes da parada</h4>
+            <p>Ao identificar um padrão de risco, avisamos você e já planejamos a intervenção antes do prejuízo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-note reveal reveal-right">
+        <span class="label">Como funciona a cobrança</span>
+        <p>Mensalidade por equipamento monitorado, sem contrato de instalação separado. Você escolhe quais máquinas entram no monitoramento, e ajusta conforme a necessidade da sua produção.</p>
+        <a href="#contato" class="btn btn-primary">Quero monitorar meus equipamentos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="cta-band">
+  <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1920&q=80" alt="Solda em equipamento industrial durante instalação">
+  <div class="container">
+    <h3 class="reveal">Sua produção não pode esperar um problema acontecer para agir.</h3>
+    <a href="#contato" class="btn btn-outline-light reveal">Falar com a AutPar</a>
+  </div>
+</section>
+
+<!-- =========================================================
+     CONTATO
+========================================================= -->
+<section class="contact" id="contato">
+  <div class="container">
+    <div class="contact-head">
+      <span class="eyebrow blue reveal">Fale com a gente</span>
+      <h2 class="reveal">Vamos conversar sobre a sua indústria</h2>
+      <p class="reveal">Conte o que a sua indústria precisa (instalação, automação, manutenção ou monitoramento) e retornamos com um técnico, não com um robô de atendimento.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="reveal reveal-left">
+        <form id="contactForm">
+          <div class="form-two">
+            <div class="form-row">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" required placeholder="Seu nome completo">
+            </div>
+            <div class="form-row">
+              <label for="empresa">Empresa</label>
+              <input type="text" id="empresa" name="empresa" placeholder="Nome da sua indústria">
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="telefone">Telefone / WhatsApp</label>
+            <input type="tel" id="telefone" name="telefone" required placeholder="(43) 90000-0000">
+          </div>
+          <div class="form-row">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" required placeholder="Conte um pouco sobre o equipamento ou o problema"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Enviar mensagem</button>
+        </form>
+
+        <div id="formSuccess">
+          <h3>Mensagem recebida.</h3>
+          <p>Nossa equipe volta a falar com você em breve. Se preferir uma resposta mais rápida, chame no WhatsApp pelo botão do topo da página.</p>
+        </div>
+      </div>
+
+      <div class="info-panel reveal reveal-right">
+        <h3>Fale direto com a AutPar</h3>
+
+        <div class="info-item">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2.1Z"/></svg></div>
+          <div>
+            <div class="t">Telefone</div>
+            <div class="v">(43) 3375-9069 / (43) 3377-5440</div>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <div class="t">Endereço</div>
+            <div class="v">Rua Paranaguá, 121, Jardim Ana Eliza, Cambé, PR</div>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+          <div>
+            <div class="t">Horário de atendimento</div>
+            <div class="v">Segunda a sexta, 8h às 18h</div>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21v-6h6v6"/></svg></div>
+          <div>
+            <div class="t">Razão social</div>
+            <div class="v">Aut-Par Fabricação de Máquinas e Equipamentos Ltda</div>
+          </div>
+        </div>
+
+        <div class="info-legal">
+          CNPJ 09.333.505/0001-42. Micro empresa em atividade desde 25/01/2008, em Cambé, PR.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="#top" class="logo-mark"><span class="brand"><span class="aut">Aut</span><span class="par">Par</span></span></a>
+        <p class="footer-tagline">Instalação, manutenção e monitoramento industrial em Cambé, PR, desde 2008.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#diferencial">Monitoramento</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li>(43) 3375-9069</li>
+          <li>Rua Paranaguá, 121, Cambé, PR</li>
+          <li>CNPJ 09.333.505/0001-42</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Aut-Par Fabricação de Máquinas e Equipamentos Ltda.</span>
+      <span>CNPJ 09.333.505/0001-42</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- footer year ---------- */
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---------- header on scroll + hero parallax ---------- */
+  var header = document.getElementById('siteHeader');
+  var heroImg = document.getElementById('heroImg');
+  var ticking = false;
+
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+
+    if (header){
+      if (y > 40) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    }
+
+    if (heroImg && !reduceMotion){
+      var shift = Math.min(y * 0.18, 120);
+      heroImg.style.transform = 'translateY(' + shift + 'px)';
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function(){
+    if (!ticking){
+      window.requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+  onScroll();
+
+  /* ---------- mobile nav toggle ---------- */
+  var navToggle = document.getElementById('navToggle');
+  if (navToggle){
+    navToggle.addEventListener('click', function(){
+      var isOpen = header.classList.toggle('nav-open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(function(link){
+      link.addEventListener('click', function(){
+        header.classList.remove('nav-open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* ---------- scroll reveal (Intersection Observer) ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+
+  if (reduceMotion || !('IntersectionObserver' in window)){
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---------- contact form (front-end only) ---------- */
+  var form = document.getElementById('contactForm');
+  var success = document.getElementById('formSuccess');
+
+  if (form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      // NOTE: este formulário ainda não envia dados para nenhum servidor.
+      // Para publicar de verdade, conecte a um endpoint (ex.: Formspree,
+      // função serverless própria, ou back-end da empresa) e faça um
+      // fetch() com os dados de 'form' para esse endpoint aqui.
+      form.style.display = 'none';
+      if (success) success.style.display = 'block';
+    });
+  }
+
+})();
+</script>
+
+</body>
+</html>
